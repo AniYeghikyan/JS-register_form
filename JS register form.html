@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-6">
+        <form name="register_complaint" id="frm" action="#">
+            <h2>Registration form for teacher</h2>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="firstName">First name:</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name"
+                           name="firstName">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Last name:</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Country:</label>
+                    <input type="text" class="form-control" id="country" placeholder="Enter country" name="country">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">City:</label>
+                    <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Salary:</label>
+                    <input type="number" class="form-control" id="salary" placeholder="Enter salary" name="salary">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Students:</label>
+                    <input type="number" class="form-control" id="students" placeholder="Enter students"
+                           name="students">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="lastName">Workplace:</label>
+                    <input type="text" class="form-control" id="workplace" placeholder="Enter workplace"
+                           name="workplace">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="lastName">Skills:</label>
+                    <textarea class="form-control" rows="5" id="skills" placeholder="Enter skills"></textarea>
+                </div>
+            </div>
+            <input class="btn btn-default" onclick="fn1()" value="Submit">
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Registration form for student</h2>
+        <form>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="firstName">First name:</label>
+                    <input type="text" class="form-control" id="firstNameS" placeholder="Enter first name"
+                           name="firstName">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Last name:</label>
+                    <input type="text" class="form-control" id="lastNameS" placeholder="Enter last name"
+                           name="lastName">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Country:</label>
+                    <input type="text" class="form-control" id="countryS" placeholder="Enter country" name="country">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">City:</label>
+                    <input type="text" class="form-control" id="cityS" placeholder="Enter city" name="city">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Card number:</label>
+                    <input type="number" class="form-control" id="cardNumber" placeholder="Enter card number"
+                           name="cardNumber">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Teacher Name:</label>
+                    <select class="form-control" id="teacherName">
+                        <option disabled selected>Choose your option</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                    </select>
+                </div>
+            </div>
+            <input class="btn btn-default" onclick="fn2()" value="Submit">
+        </form>
+    </div>
+</div>
+<script>
+    function Person(firstName, lastName, country, city) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.city = city;
+    }
+    function Teacher(firstName, lastName, country, city, salary, students, workplace, skills) {
+        Person.call(this, firstName, lastName, country, city);
+        this.salary = salary;
+        this.students = students;
+        this.workplace = workplace;
+        this.skills = skills;
+    }
+    function Student(firstName, lastName, country, city, cardNumber, teacherName) {
+        Person.call(this, firstName, lastName, country, city);
+        this.cardNumber = cardNumber;
+        this.teacherName = teacherName;
+    }
+    Teacher.prototype = Object.create(Person.prototype);
+    Student.prototype = Object.create(Person.prototype);
+    function fn1() {
+        var t = new Teacher();
+        t.firstName = document.getElementById("firstName").value;
+        t.lastName = document.getElementById("lastName").value;
+        t.country = document.getElementById("country").value;
+        t.city = document.getElementById("city").value;
+        t.salary = document.getElementById("salary").value;
+        t.students = document.getElementById("students").value;
+        t.workplace = document.getElementById("workplace").value;
+        t.skills = document.getElementById("skills").value;
+        console.log("=== Teacher ===");
+        for (var key in t) {
+            console.log(key + ": " + t[key]);
+        }
+    }
+    function fn2() {
+        var s = new Student();
+        s.firstName = document.getElementById("firstNameS").value;
+        s.lastName = document.getElementById("lastNameS").value;
+        s.country = document.getElementById("countryS").value;
+        s.city = document.getElementById("cityS").value;
+        s.cardNumber = document.getElementById("cardNumber").value;
+        s.teacherName = document.getElementById("teacherName").value;
+        console.log("=== Student ===");
+        for (var key in s) {
+            console.log(key + ": " + s[key]);
+        }
+    }
+</script>
+</body>
+</html>
